@@ -17,6 +17,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// Critical: Explicitly handle the OPTIONS (Preflight) request
+app.options('*', cors());
+
 // --- HARDCODED USERS ---
 const users = [
     { id: 1, email: "admin@test.com", password: "123456", name: "Admin User", role: "admin", status: "active" },
@@ -77,7 +80,6 @@ app.get('/api/zoho/sales', (req, res) => {
 });
 
 // --- TICKETS API (UPDATED) ---
-// Changed to 'let' so we can mutate the status
 let tickets = [
     { id: 'TK-1001', subject: 'Cannot reset password', customer: 'John Doe', status: 'Open', priority: 'High', date: '2026-09-04' },
     { id: 'TK-1002', subject: 'Email not syncing to Outlook', customer: 'Jane Smith', status: 'In Progress', priority: 'Medium', date: '2026-09-03' },
@@ -89,7 +91,6 @@ app.get('/api/zoho/tickets', (req, res) => {
     res.json(tickets);
 });
 
-// UPDATED: Route to Close or Reopen a ticket
 app.put('/api/zoho/tickets/:id/status', (req, res) => {
     const ticketId = req.params.id;
     const newStatus = req.body.status;
@@ -118,4 +119,5 @@ app.post('/api/login', (req, res) => {
     res.json({ success: true, message: "Login successful!", token: "fake-jwt-token-12345", user: { email: user.email, name: user.name, role: user.role } });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// CRITICAL CHANGE: Bind to 0.0.0.0 for Render
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
