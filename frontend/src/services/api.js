@@ -1,4 +1,4 @@
-const API_URL = 'https://custom-employee-portal-9brr.onrender.com';
+const API_URL = 'https://custom-employee-portal-9brr.onrender.com/api';
 
 const getToken = () => localStorage.getItem('token');
 
