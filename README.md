@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Custom Employee Portal with Zoho One Integration
 
 A web-based employee portal with built-in authentication and Role-Based Access Control (RBAC), securely integrating with Zoho One APIs.
@@ -33,3 +34,6 @@ A web-based employee portal with built-in authentication and Role-Based Access C
 ```bash
 git clone https://github.com/SadasivuniGnanasagar/custom-employee-portal
 cd custom-employee-portal
+=======
+# custom-employee-portal
+>>>>>>> aa15942c125e5d1f4732edee76cf6e60df271b31
